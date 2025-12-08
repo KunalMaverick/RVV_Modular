@@ -1,15 +1,16 @@
-RVV Modular Arithmetic and Matrix Multiplication
-================================================
+# RVV Modular Arithmetic & Matrix Multiplication
 
-This project implements high-performance modular arithmetic and matrix
-multiplication using the RISC-V Vector Extension (RVV). It uses Barrett
-reduction for fast modular multiplication and is intended for use in
-cryptographic workloads, RVV benchmarking, and accelerator validation.
+High-performance modular arithmetic and matrix multiplication using the RISC-V Vector Extension (RVV) with Barrett reduction for fast modular multiplication.
 
+Designed for:
+* Cryptographic workloads (NTT, HE, lattices)
+* RVV benchmarking
+* Accelerator validation
+* Hardware/Software co-design
 
-Project Structure
------------------
+## Project Structure
 
+```
 test.c
 uint_mod_arith_rvv.c
 uint_mod_arith_rvv.h
@@ -18,100 +19,85 @@ util.h
 util_modular.h
 Makefile
 README.md
+```
 
+## Features
 
-Features
---------
+* Vectorized modular add, sub, and negation using RVV
+* Vectorized modular multiplication using 128-bit multiply + Barrett reduction
+* Dense RVV matrix multiplication
+* RVV modular matrix multiplication
+* Scalar golden reference for correctness checking
+* Verified execution using the Spike RISC-V simulator
 
-- Vectorized modular add, sub, and negation using RVV
-- Vectorized modular multiplication using 128-bit multiply and Barrett reduction
-- Dense RVV matrix multiplication
-- RVV modular matrix multiplication
-- Scalar golden reference for correctness checking
-- Verified execution using the Spike RISC-V simulator
-
-
-Build Requirements
-------------------
+## Build Requirements
 
 You must have the following installed:
+* RISC-V GCC with RVV support
+* Spike RISC-V simulator
+* Proxy kernel (`pk`)
 
-- RISC-V GCC with RVV support
-- Spike RISC-V simulator
-- Proxy kernel (pk)
+## How to Build
 
+```bash
+make 
+```
 
-How to Build
-------------
+This produces:
 
-Run:
-
-make
-
-This produces the executable:
-
+```
 test.elf
+```
 
+## How to Run on Spike
 
-How to Run on Spike
--------------------
-
-Run:
-
+```bash
 make run
+```
 
-This executes:
+Which executes:
 
+```bash
 spike --isa=rv64gcv pk test.elf
+```
 
+## What the Program Does
 
-What the Program Does
----------------------
-
-When executed, the program performs the following:
-
+When executed, the program:
 1. Tests RVV modular addition, subtraction, and negation
 2. Tests RVV modular multiplication using Barrett reduction
 3. Runs scalar versus RVV matrix multiplication
 4. Runs full RVV modular matrix multiplication
 5. Verifies correctness against scalar reference implementations
-6. Prints timing results and output samples
+6. Prints timing and output samples
 
+## Cleaning the Build
 
-Cleaning the Build
-------------------
-
-Run:
-
+```bash
 make clean
+```
 
+## Architecture Summary
 
-Architecture Summary
---------------------
+* ISA: RV64GCV
+* Data type: `uint64`
+* Vector length: runtime determined via `vsetvl`
+* Modular reduction: Barrett reduction (128-bit)
 
-- ISA: RV64GCV
-- Data type: uint64
-- Vector length: Runtime determined via vsetvl
-- Modular reduction: Barrett reduction (128-bit)
+## Simulation Flow
 
+```
+test.elf → pk → Spike RVV simulator
+```
 
-Simulation Flow
----------------
+## Use Cases
 
-test.elf -> pk -> Spike RVV simulator
+* RVV performance benchmarking
+* Modular arithmetic kernel validation
+* Cryptographic primitive testing
+* Accelerator hardware/software co-design
+* Computer architecture research
 
-
-Use Cases
----------
-
-- RVV performance benchmarking
-- Modular arithmetic kernel validation
-- Cryptographic primitive testing
-- Accelerator hardware/software co-design
-- Research in vector microarchitecture
-
-
-License
--------
+## License
 
 Free to use for academic and research purposes.
