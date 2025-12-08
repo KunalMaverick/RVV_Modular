@@ -37,18 +37,6 @@ You must have the following installed:
 * Spike RISC-V simulator
 * Proxy kernel (`pk`)
 
-## How to Build
-
-```bash
-make
-```
-
-This produces:
-
-```
-test.elf
-```
-
 ## How to Run on Spike
 
 ```bash
@@ -97,7 +85,3 @@ test.elf → pk → Spike RVV simulator
 * Cryptographic primitive testing
 * Accelerator hardware/software co-design
 * Computer architecture research
-
-## License
-
-Free to use for academic and research purposes.
