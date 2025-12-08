@@ -1,4 +1,4 @@
-# RVV Modular Arithmetic & Matrix Multiplication
+#RVV Modular Arithmetic & Matrix Multiplication
 
 High-performance **modular arithmetic and matrix multiplication using the RISC-V Vector Extension (RVV)** with **Barrett reduction** for fast modular multiplication.
 
@@ -10,5 +10,5 @@ Designed for:
 
 ---
 
-## 📁 Project Structure
+##📁 Project Structure
 
